@@ -1,0 +1,10 @@
+Artists Services
+    1 - Get Artists
+    2 - Get Albumes and Songs
+
+Users Services
+    1 - Get Playlists and their songs
+    2 - Get Playlists songs
+    3 - Get Users
+    4 - Save song in playlist
+    5 - Save new playlist
