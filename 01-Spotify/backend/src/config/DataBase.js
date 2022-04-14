@@ -2,7 +2,7 @@ const { connect } = require( 'mongoose' );
 
 class DataBase {
     connectMe () {
-        connect(process.env.MONGODB_ATLAS, {
+        connect( process.env.MONGODB_ATLAS, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })

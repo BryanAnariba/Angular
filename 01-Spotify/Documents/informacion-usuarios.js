@@ -1,4 +1,4 @@
-db.Users.insertMany([
+db.users.insertMany([
     {
         "nombreUsuario":"Usuario 1",
         "playlists":[

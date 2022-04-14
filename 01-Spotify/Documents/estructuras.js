@@ -1,3 +1,3 @@
 use spotify;
-db.createCollection('Artists');
-db.createCollection('Users');
+db.createCollection('Artist');
+db.createCollection('User');

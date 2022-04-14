@@ -1,16 +1,15 @@
 const { Router } = require( 'express' );
 const ArtistRouter = Router();
 
-// Artists Web Services
-// @Get => Artists List
-ArtistRouter.get( '', ( req, res ) => {
-    return res.json({ data: '@Get => Artists List' })
-});
+const { ArtistController } = require('../controllers/ArtistController');
+const ArtistCtrl = new ArtistController();
 
-// @Get => Albumes with Songs of artists selected 
-ArtistRouter.get( '/:artistId/albumes', ( req, res ) => {
-    return res.json({ data: '@Get => Albumes with Songs of artists selected' });
-});
+// Artists Web Services
+// @Get => Artists List localhost:3500/api/artists
+ArtistRouter.get( '', ArtistCtrl.getArtists );
+
+// @Get => Albumes with Songs of artists selected  localhost:3500/api/artists/:artistId/albumes
+ArtistRouter.get( '/:artistId/albumes', ArtistCtrl.getAlbumesOfOneArtist );
 
 module.exports = {
     ArtistRouter,

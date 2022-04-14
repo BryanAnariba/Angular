@@ -1,5 +1,5 @@
 //use SpotifyDB
-db.Artists.insertMany(
+db.artists.insertMany(
     [
         {
             "nombreArtista":"Artista 1",

@@ -1,28 +1,25 @@
 const { Router } = require( 'express' );
 const UserRouter = Router();
 
+const { UserController } = require('../controllers/UserController');
+const UserCtrl =  new UserController();
+
 // Users Web Services
-// @Get => Playslist and their songs
-UserRouter.get( '', ( req, res ) => {
-    return res.json( {data: '@Get => Playslist and their songs'} );
-});
+// @Get => Users http://localhost:3500/api/users
+UserRouter.get( '', UserCtrl.getUsers );
 
-// @Get => Playslist selected by user
-UserRouter.get( '/:userId/playlist/:playlistId', ( req, res ) => {
-    return res.json({ data: '@Get => Playslist selected by user' });
-});
+// @Get => Playslist selected by user http://localhost:3500/api/users/:userId/playlists/:playlistId 
+UserRouter.get( '/:userId/playlists/:playlistId', UserCtrl.getUserPlaylistSelected );
 
-// @Get => Users Playlists
-UserRouter.get( '/:userId/playlists', ( req, res ) => {
-    return res.json( { data: '@Get => Users Playlists' } );
-});
+// @Get => Users Playlists http://localhost:3500/api/users/:userId/playlists
+UserRouter.get( '/:userId/playlists', UserCtrl.getUserPlaylists );
 
-// @Post => Save Song In Playlist of one user
-UserRouter.post( '/:userId/playlist/:playlistId/song', ( req, res ) => {
-    return res.json( { data: '@Post => Save Song In Playlist of one user' } );
-});
+// @Post => Save Song In Playlist of one user http://localhost:3500/api/users/:userId/playlists/:playlistId/songs
+UserRouter.post( '/:userId/playlists/:playlistId/songs', UserCtrl.saveSongInPlaylist );
 
-// @Post => Save a new Playlist
+// @Post => Save a new Playlist http://localhost:3500/api/users/:userId/playlists
+UserRouter.post( '/:userId/playlists', UserCtrl.savePlaylists );
+
 
 module.exports = {
     UserRouter,
