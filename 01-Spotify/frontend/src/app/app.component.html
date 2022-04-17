@@ -1,0 +1,31 @@
+<router-outlet></router-outlet>
+
+<!--HEADER-->
+<app-header>
+</app-header>
+
+<div class="container">
+  <div class="row">
+    <nav class="col-lg-2 col-md-3 d-none d-md-block bg-dark sidebar">
+      <!--SIDEBAR-->
+      <app-sidebar
+        (onViewArtist)="viewArtist( $event )"
+        (onViewPlaylist)="viewPlaylist( $event )"
+        ></app-sidebar>
+    </nav>
+
+    <main role="main" id="main-container" class="col-md-9 ml-auto col-lg-10 px-4">
+      <div id="vista-playlist" *ngIf="visibleRegion === 'playlists'">
+        <!--Playlists-->
+        <app-playlists></app-playlists>
+      </div>
+
+      <div id="vista-artista" *ngIf="visibleRegion === 'artists'">
+        <!--Artists-->
+        <app-artist></app-artist>
+      </div>
+    </main>
+  </div>
+</div>
+
+
