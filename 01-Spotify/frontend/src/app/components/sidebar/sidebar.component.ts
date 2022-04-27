@@ -15,17 +15,31 @@ export class SidebarComponent implements OnInit {
 
   public faMusic = faMusic;
   public faPlay = faPlay;
+
+  public artists: any = [];
   constructor (
-    artistService: PlaylistService,
+    private artistService: PlaylistService,
   ) { }
 
   ngOnInit(): void {
+    this.artistService.getArtists().subscribe(
+      {
+        next: ( res: any ) => {
+          this.artists = res.data;
+          console.log( this.artists );
+        },
+        error: ( err: any ) => {
+          console.error( err );
+        },
+        //complete: () => console.info('complete')
+      }
+    );
   }
 
   // AHHH diste click entonces llevemos la informacion de aqui hasta app.component esto es un evento de salida para ver Artista
-  public viewArtist ( artistId: string ) {
+  public viewArtist ( artist: any ) {
     //this.visibleRegion = 'artists';
-    this.onViewArtist.emit( artistId );
+    this.onViewArtist.emit( artist._id );
   }
 
   // AHHH diste click entonces llevemos la informacion de aqui hasta app.component esto es un evento de salida para ver Playlist

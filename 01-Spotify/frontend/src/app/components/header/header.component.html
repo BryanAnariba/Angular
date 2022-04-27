@@ -33,15 +33,33 @@
   </div>
   <div class="modal-body">
       <div class="modal-body">
-        Seleccione un usuario
-        <select class="form-control">
-          <option value="1">Usuario 1</option>
-          <option value="2">Usuario 2</option>
-          <option value="3">Usuario 3</option>
-        </select>
+        <form [formGroup]="userForm">
+          Seleccione un usuario
+          <select
+            class="form-control"
+            formControlName="_id"
+            [ngClass]="{'input-error':_id!.invalid && (_id!.dirty || _id!.touched)}"
+          >
+            <option value="" selected>Seleccione</option>
+            <option *ngFor="let user of users" value="{{ user._id }}">{{ user.nombreUsuario }}</option>
+          </select>
+          <div *ngIf="_id?.invalid && (_id?.dirty || _id?.touched)" class="error">
+            <small
+              id="emailHelp"
+              class="form-text text-danger"
+              *ngIf="_id?.errors?.['required']">
+                The user is required
+            </small>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-success" (click)="selectUser()">Select User</button>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          [disabled]="!userForm.valid"
+          (click)="selectUser()"
+          >Select User</button>
         <button type="button" class="btn btn-outline-danger" (click)="modalService.dismissAll('btnClose')">Close</button>
       </div>
   </div>
