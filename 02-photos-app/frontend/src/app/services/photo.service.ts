@@ -23,15 +23,15 @@ export class PhotoService {
     return this.http.get( `${ this.API_URL }`, {} );
   }
 
-  getPhoto = () => {
-
+  getPhoto = ( photoId: string ): Observable<any> => {
+    return this.http.get( `${ this.API_URL }/${ photoId }`, {} );
   }
 
-  editPhoto = () => {
-
+  editPhoto = ( photoId: string, photoData: IPhoto ): Observable<any> => {
+    return this.http.put( `${ this.API_URL }/${ photoId }`, photoData )
   }
 
-  deletePhoto = () => {
-
+  deletePhoto = ( photoId: string ): Observable<any> => {
+    return this.http.delete( `${ this.API_URL }/${ photoId }`, {} )
   }
 }

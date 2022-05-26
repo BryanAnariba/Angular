@@ -10,6 +10,8 @@ import { PhotoListComponent } from './components/photo-list/photo-list.component
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms'; // MANUAL IMPORTATION
 import { HttpClientModule } from '@angular/common/http'; // // MANUAL IMPORTATION
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // MANUAL IMPORTATION
+import { ToastrModule } from 'ngx-toastr'; // MANUAL IMPORTATION
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http'; // // MANUAL IMPORTATIO
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, // MANUAL IMPORTATION
-    HttpClientModule // MANUAL IMPORTATION
+    HttpClientModule, // MANUAL IMPORTATION
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

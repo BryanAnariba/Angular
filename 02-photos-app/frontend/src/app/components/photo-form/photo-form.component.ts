@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { PhotoService } from 'src/app/services/photo.service';
 
@@ -29,7 +30,7 @@ export class PhotoFormComponent implements OnInit {
     return this.photoForm.get( 'description' );
   }
 
-  constructor( private photoService: PhotoService, private router: Router ) { }
+  constructor( private photoService: PhotoService, private router: Router, private toastService: ToastrService ) { }
 
   ngOnInit(): void {
   }
@@ -53,6 +54,7 @@ export class PhotoFormComponent implements OnInit {
           console.log(res);
           this.photoForm.reset();
           this.photoSelected = '0'
+          this.toastService.success( 'Photo Created', 'Successfully!' );
           this.router.navigate( [ '/photos' ] );
         },
         error: ( error ) => {

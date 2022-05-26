@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PhotoService } from '../../services/photo.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { PhotoService } from '../../services/photo.service';
 })
 export class PhotoListComponent implements OnInit {
   public photos = [];
-  constructor( private photoService: PhotoService ) { }
+  constructor(
+    private photoService: PhotoService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.photoService.getPhotos()
@@ -24,8 +27,7 @@ export class PhotoListComponent implements OnInit {
   }
 
   selectedCard( photoId: string ) {
-    console.log( { photoId } );
-
+    this.router.navigate( [ '/photos', photoId ] );
   }
 
 }

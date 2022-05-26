@@ -17,7 +17,7 @@ const routes: Routes = [
     component: PhotoFormComponent
   },
   {
-    path: 'photo/:photoId',
+    path: 'photos/:photoId',
     component: PhotoPreviewComponent
   },
   {
