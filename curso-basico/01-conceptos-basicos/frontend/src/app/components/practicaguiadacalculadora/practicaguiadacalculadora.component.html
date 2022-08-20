@@ -1,0 +1,36 @@
+<div class="container mt-5">
+  <div class="row">
+    <h2>{{ title }}</h2>
+    <div class="card" style="width: 18rem;">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Suma: {{ adition }}</li>
+        <li class="list-group-item">Resta: {{ substract }}</li>
+        <li class="list-group-item">Multiplicacion: {{ multiplicate }}</li>
+        <li class="list-group-item">Division: {{ divide }}</li>
+      </ul>
+    </div>
+    <form>
+      <div class="mb-3">
+        <label for="firstNumber" class="form-label">Write First Number:</label>
+        <input
+          type="number"
+          name="firstName"
+          id="firstName"
+          [(ngModel)]="firstNumber"
+          class="form-control"
+        >
+      </div>
+      <div class="mb-3">
+        <label for="secondNumber" class="form-label">Write Second Number:</label>
+        <input
+          type="number"
+          name="secondNumber"
+          id="secondNumber"
+          [(ngModel)]="secondNumber"
+          class="form-control"
+        >
+      </div>
+      <button (click)="handleGetOperations()" class="btn btn-outline-primary">Realizar Operaciones</button>
+    </form>
+  </div>
+</div>
