@@ -1,0 +1,7 @@
+<li class="list-group-item"><strong>{{ indiceEmpleado }}</strong> - {{ empleadoItem.nombreEmpleado }} {{ empleadoItem.apellidoEmpleado }} <strong><i>Sueldo:</i> {{ empleadoItem.salarioEmpleado }}</strong></li>
+<app-caracteristicasempleado
+  (caracteristicasEmpleado)="getCaracteristicasEmpleado($event)"
+></app-caracteristicasempleado>
+<ul style="list-style: none;" *ngFor="let caracteristica of caracteristicas">
+  <li>{{ caracteristica }}</li>
+</ul>

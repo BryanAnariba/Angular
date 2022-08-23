@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./practicaguiadacalculadora.component.scss']
 })
 export class PracticaguiadacalculadoraComponent implements OnInit {
-  public title: string = 'Practica Guiada 1 Calculadora'
+  public title: string = 'PRACTICA GUIADA #1 CALCULADORA'
   public firstNumber: number = 0;
   public secondNumber: number = 0;
   public adition: number = 0;
@@ -19,19 +19,20 @@ export class PracticaguiadacalculadoraComponent implements OnInit {
   }
 
   handleAdding = (): void => {
-    this.adition = this.firstNumber + this.secondNumber;
+    this.adition = Number( this.firstNumber ) + Number( this.secondNumber );
   }
 
   handleSubstract = (): void => {
-    this.substract = this.firstNumber - this.secondNumber;
+    this.substract = Number( this.firstNumber ) - Number( this.secondNumber );
   }
 
   handleMultiplicate = (): void => {
-    this.multiplicate = this.firstNumber * this.secondNumber;
+    this.multiplicate = Number( this.firstNumber ) * Number( this.secondNumber );
   }
 
   handleDivide = (): void => {
-    this.divide = this.firstNumber / this.secondNumber;
+    this.divide = ( Number( this.firstNumber ) / Number( this.secondNumber ) );
+    this.divide = Number( this.divide.toFixed( 2 ) );
   }
 
   handleGetOperations = (): void => {
@@ -41,6 +42,7 @@ export class PracticaguiadacalculadoraComponent implements OnInit {
     this.handleDivide();
     this.firstNumber = 0;
     this.secondNumber = 0;
+    //Bass... Can U Hear Me
   }
 
 }
