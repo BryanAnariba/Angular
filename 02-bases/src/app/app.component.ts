@@ -8,3 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public title: string = 'Mi Primera App Angular';
 }
+
+/*
+  Decoradors
+  @Input() => Permite a un componente hijo recibir informacion de un componente padre
+  @OutPut() =>
+*/
