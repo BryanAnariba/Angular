@@ -26,4 +26,14 @@ export class MainPageComponent {
       }
     ];
     constructor() { }
+
+    onNewCharacter(character: Character): void {
+      console.log('app-dbz-main-page => informacion recibida por el padre del hijo: ', character)
+      this.characters = [ character, ...this.characters ];
+    }
+
+    onDeleteId(index: number): void {
+      console.log('app-dbz-main-page => informacion recibida por el padre del hijo: ', {index});
+      this.characters.splice(index, 1);
+    }
 }
