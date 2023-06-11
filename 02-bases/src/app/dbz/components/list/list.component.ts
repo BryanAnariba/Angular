@@ -9,15 +9,14 @@ import { Character } from '../../interfaces/Character.interface';
 export class ListComponent {
 
   @Output()
-  public onDeleteId: EventEmitter<number> = new EventEmitter();
+  public deleteCharacterByUid: EventEmitter<string> = new EventEmitter();
 
   // @Input() => Permite a un componente hijo recibir informacion de un componente padre
   @Input()
-  public characterList: Character[] = [{ name: 'Trunks', power: 20 }];
-
+  public characterList: Character[] = [];
   // TODO: Emitir el Id del personaje
-  onDeleteCharacter(index: number): void {
-    console.log('dbz-list enviando el index del hijo al padre: ', { index });
-    this.onDeleteId.emit(index);
+  onDeleteCharacter(uid: string | undefined): void {
+    console.log('dbz-list enviando el uid del hijo al padre: ', { uid });
+    this.deleteCharacterByUid.emit(uid);
   }
 }
