@@ -1,0 +1,27 @@
+Dependencias de Manera Global (Actualizar Si Es Posible)
+    typescript
+    ts-node
+    nodemon
+
+Iniciar Proyecto Typescript
+    tsc --init
+
+Iniciar Proyecto node
+    npm init --yes
+
+Dependencias
+    express
+    dotenv
+    mongoose
+    cors
+    colors
+
+Dev Dependencias
+    @types/express
+    @types/mongoose
+    @types/cors
+    @types/dotenv
+    @types/colors
+
+Correr Aplicacion
+    
