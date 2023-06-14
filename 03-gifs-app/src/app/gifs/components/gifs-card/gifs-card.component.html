@@ -1,0 +1,15 @@
+<div class="text-center card mb-2 bg-dark text-center">
+
+  <!-- TODO: Crear Imagen -->
+  <!-- <img [src]="gifItemData.images.downsized_medium.url" [alt]="gifItemData.title" class="card-img-top"> -->
+  <shared-lazy-image
+    [imageUrl]="gifItemData.images.downsized_medium.url"
+    [alt]="gifItemData.title"
+  >
+  </shared-lazy-image>
+  <div class="card-body text-white">
+    <p class="card-text">
+      {{ gifItemData.title || 'No Title' }}
+    </p>
+  </div>
+</div>
