@@ -1,4 +1,4 @@
-import 'dotenv';
+import 'dotenv/config';
 import { Server } from './Server';
 
 const main = async (): Promise<void> => {

@@ -3,6 +3,7 @@ import express, { Application } from "express";
 import cors from 'cors';
 
 import indexRoutes from './routes/index';
+import { connectDB } from './database/Connection';
 
 export class Server {
     app!: Application;
@@ -30,8 +31,10 @@ export class Server {
 
     async startServer (): Promise<void> {
         await this.app.listen( this.app.get( 'PORT' ) );
-        console.log( `===================================`.red );
+        const result = await connectDB();
+        console.log( `==========================================================================`.red );
         console.log( `NodeJS Server started on port: ${ this.app.get( 'PORT' ) }`.cyan );
-        console.log( `===================================`.red );
+        console.log( `MongoDB Server started on port: ${ result.connection.host }`.cyan );
+        console.log( `==========================================================================`.red );
     }
 }
