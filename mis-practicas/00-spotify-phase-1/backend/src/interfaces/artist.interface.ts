@@ -1,7 +1,7 @@
 export interface Artist {
     _id?: string;
     nombreArtista: string;
-    albumes: Album[]
+    albumes?: Album[]
 }
 
 export interface Album {
