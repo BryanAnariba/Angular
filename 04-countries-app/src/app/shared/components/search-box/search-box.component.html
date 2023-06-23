@@ -1,0 +1,7 @@
+<input 
+    type="text" 
+    class="form-control" 
+    [placeholder]="placeHolder"
+    #criterioBusquedaVal
+    (keyup.enter)="onValue(criterioBusquedaVal.value)"
+>
