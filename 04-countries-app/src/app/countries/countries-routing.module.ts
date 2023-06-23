@@ -20,7 +20,7 @@ const routes: Routes = [
         component: ByCountryPageComponent,
     },
     {
-        path: 'by/:id',
+        path: 'by/:alphaCode',
         component: CountryPageComponent
     }
 ]

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, map } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
 
 @Injectable({
@@ -37,6 +37,17 @@ export class CountriesService {
         catchError(error => {
           console.error(error);
           return of([]);
+        })
+      );
+  }
+
+  public getCountryByAlphaCode ( alphaCode:string ): Observable<Country | null> {
+    return this.httpClient.get<Country[]>( `${ this.API_URL }/alpha/${ alphaCode }`, {} ) // COMO TAL get<Country[]> la respuesta siempre es un array por el contrato de la api
+      .pipe(
+        map(countries => countries.length > 0 ? countries[0] : null ),
+        catchError(error => {
+          console.error(error);
+          return of(null);
         })
       );
   }
