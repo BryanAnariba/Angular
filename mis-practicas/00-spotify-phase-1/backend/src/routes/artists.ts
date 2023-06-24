@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getItem, getItems } from '../controllers/Artist';
 
 const router: Router = Router();
 
@@ -8,14 +9,10 @@ const router: Router = Router();
         Obtener albumez y canciones de un artista seleccionado
 */
 
-// Obtener artistas
-router.get( '', ( req, res ) => {
-    return res.status(200).json({ statusCode: 200, data: 'Artists Works' })
-});
+// localhost:3500/api/artists
+router.get( '', getItems );
 
-// Obtener albumez y canciones de un artista seleccionado
-router.get( '/:artistId/albumes', ( req, res ) => {
-    return res.status(200).json({ statusCode: 200, data: 'Artists-Albumes Works' })
-});
+// localhost:3500/api/artists/648a9415b205d86fc60ad397/albumes
+router.get( '/:artistId/albumes', getItem );
 
 export { router };

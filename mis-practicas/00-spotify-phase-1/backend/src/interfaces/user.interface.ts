@@ -13,7 +13,6 @@ export interface Playlist {
 }
 
 export interface Cancion {
-    _id?: string;
     nombreCancion: string;
     artista: string;
     album: string;

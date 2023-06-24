@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getItems, getItemsByUserId, getItemsByUserIdAndPlaylistsId } from '../controllers/User';
+import { createItem, createItemInPlaylist, getItems, getItemsByUserId, getItemsByUserIdAndPlaylistsId } from '../controllers/User';
 
 const router: Router = Router();
 
@@ -12,19 +12,19 @@ const router: Router = Router();
         Guardar nueva playlist
 */
 
+// localhost:3500/api/users
 router.get( '', getItems );
 
+// localhost:3500/api/users/648a942bb205d86fc60ad3a2/playlists
 router.get( '/:userId/playlists', getItemsByUserId );
 
+// localhost:3500/api/users/648a942bb205d86fc60ad3a2/playlists/648a942bb205d86fc60ad39e/songs
 router.get( '/:userId/playlists/:playlistId/songs', getItemsByUserIdAndPlaylistsId );
 
-router.post( '/:userId/playlists/:playlistId/songs', ( req, res ) => {
-    return res.status(200).json({ statusCode: 200, data: 'Save song in Playlist Works' })
-});
+router.post( '/:userId/playlists/:playlistId/songs', createItemInPlaylist );
 
-router.post( '/:userId/playlists', ( req, res ) => {
-    return res.status(200).json({ statusCode: 200, data: 'Save new playlist Works' })
-});
+// localhost:3500/api/users/648a942bb205d86fc60ad3a2/playlists
+router.post( '/:userId/playlists', createItem );
 
 
 
