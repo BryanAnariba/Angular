@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" [routerLink]="['']"><img src="./assets/img/spotify-white-logo.png"
+            style="width: 180px;"></a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-playlist">Nueva playlist</a>
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-usuarios">Cambiar usuario</a>
+        </li>
+    </ul>
+</nav>
+
+
+<!--Modal Usuarios-->
+<div class="modal fade" id="modal-usuarios" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cambiar usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Seleccione un usuario
+                <select class="form-control">
+                    <option value="1">Usuario 1</option>
+                    <option value="2">Usuario 2</option>
+                    <option value="3">Usuario 3</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-success">Seleccionar usuario</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Nueva Lista-->
+<div class="modal fade" id="modal-playlist" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo playlist</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-outline-success">Guardar Lista</button>
+            </div>
+        </div>
+    </div>
+</div>

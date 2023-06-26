@@ -1,10 +1,29 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+    {
+        path: 'playlists',
+        loadChildren: () => import('./playlist/playlist.module').then( m => m.PlaylistModule ),
+    },
+    {
+        path: 'albumes',
+        loadChildren: () => import( './album/album.module' ).then( m => m.AlbumModule ),
+    },
+    {
+        path: '**',
+        redirectTo: ''
+    }
+]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forRoot( routes )
+    ],
+    exports: [
+        RouterModule
+    ],
+    declarations: [],
+    providers: [],
 })
 export class AppRoutingModule { }
