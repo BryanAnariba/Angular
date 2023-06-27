@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faPlus, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faPlay, faMusic } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'album-item',
@@ -7,6 +7,8 @@ import { faPlus, faPlay } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./album.component.css']
 })
 export class AlbumComponent {
-  public faPlus = faPlus;
   public faPlay = faPlay;
+  public faMusic = faMusic;
+
+  
 }

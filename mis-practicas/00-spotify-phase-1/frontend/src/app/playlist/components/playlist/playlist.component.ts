@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { faPlay, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'playlist-item',
@@ -8,5 +10,15 @@ import { faPlay, faMusic } from '@fortawesome/free-solid-svg-icons';
 })
 export class PlaylistComponent {
   public faPlay = faPlay;
-  public faMusic = faMusic;
+  public faPlus = faPlus;
+
+  constructor ( private modalService: NgbModal ) {}
+  public handleOpenModal( modal: any ): void {
+    this.modalService.open( modal, { centered: true, size: 'md' } );
+  }
+
+  public handleAddToPlaylist(): void {
+
+  }
 }
+

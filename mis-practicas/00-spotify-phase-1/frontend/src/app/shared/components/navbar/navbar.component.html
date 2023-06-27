@@ -4,56 +4,43 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-playlist">Nueva playlist</a>
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-usuarios">Cambiar usuario</a>
+            <a class="nav-link" href="#" data-toggle="modal" (click)="open(nuevaPlaylist)">Nueva playlist</a>
+            <a class="nav-link" href="#" data-toggle="modal" (click)="open(seleccionaUsuario)">Cambiar usuario</a>
         </li>
     </ul>
 </nav>
 
-
 <!--Modal Usuarios-->
-<div class="modal fade" id="modal-usuarios" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Cambiar usuario</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Seleccione un usuario
-                <select class="form-control">
-                    <option value="1">Usuario 1</option>
-                    <option value="2">Usuario 2</option>
-                    <option value="3">Usuario 3</option>
-                </select>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-success">Seleccionar usuario</button>
-            </div>
-        </div>
+<ng-template #seleccionaUsuario let-modal>
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-</div>
+    <div class="modal-body">
+        Seleccione un usuario
+        <select class="form-control">
+            <option value="1">Usuario 1</option>
+            <option value="2">Usuario 2</option>
+            <option value="3">Usuario 3</option>
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Cerrar</button>
+        <button type="button" class="btn btn-outline-success" (click)="handleSelectUser()">Seleccionar Usuario</button>
+    </div>
+</ng-template>
 
 <!--Modal Nueva Lista-->
-<div class="modal fade" id="modal-playlist" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Nuevo playlist</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline-success">Guardar Lista</button>
-            </div>
-        </div>
+<ng-template #nuevaPlaylist let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Nueva Playlist: </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-</div>
+    <div class="modal-body">
+        <input type="text" name="nombrePlaylist" id="nombrePlaylist" class="form-control"
+            placeholder="Mix Regueton, Baladas, Salseo..">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Cerrar</button>
+        <button type="button" class="btn btn-outline-success" (click)="handleSavePlaylist()">Guardar Lista</button>
+    </div>
+</ng-template>
