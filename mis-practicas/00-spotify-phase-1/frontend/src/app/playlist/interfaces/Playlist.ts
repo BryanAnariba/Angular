@@ -2,8 +2,6 @@ export interface User {
     _id?: string;
     nombreUsuario: string;
     playlists?: Playlist[];
-    timestamps?: boolean;
-    versionKey?: boolean;
 }
 
 export interface Playlist {

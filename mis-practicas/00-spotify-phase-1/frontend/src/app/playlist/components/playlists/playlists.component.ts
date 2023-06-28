@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
+import { Album } from 'src/app/album/interfaces/Album';
+import { AlbumService } from 'src/app/album/services/album.service';
 
 @Component({
   selector: 'playlists-list',
@@ -7,16 +10,25 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./playlists.component.css']
 })
 export class PlaylistsComponent implements OnInit {
-  constructor ( private activatedRoute: ActivatedRoute ) {
+  public albumes?: Album[] = [];
+  constructor ( 
+    private activatedRoute: ActivatedRoute,
+    private albumService: AlbumService
+  ) {
   }
   ngOnInit(): void {
     this.activatedRoute.params
+    .pipe(
+      switchMap(
+        (param) => this.albumService.getAlbumesByArtist( param['playlistId'] )
+      )
+    )
     .subscribe(
-      (param: any) => {
-        console.log({ playlist: param['playlistId']});
+      (albumes) => {
+        //console.log(albumes);
+        this.albumes = albumes?.albumes;
       }
     )
   }
-
   
 }

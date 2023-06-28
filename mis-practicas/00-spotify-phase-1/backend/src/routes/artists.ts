@@ -6,7 +6,7 @@ const router: Router = Router();
 /*
     TODO: rest services to do
         Obtener artistas
-        Obtener albumez y canciones de un artista seleccionado
+        Obtener albumes y canciones de un artista seleccionado
 */
 
 // localhost:3500/api/artists

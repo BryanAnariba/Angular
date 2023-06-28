@@ -4,8 +4,8 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#" data-toggle="modal" (click)="open(nuevaPlaylist)">Nueva playlist</a>
-            <a class="nav-link" href="#" data-toggle="modal" (click)="open(seleccionaUsuario)">Cambiar usuario</a>
+            <a class="nav-link" data-toggle="modal" (click)="open(nuevaPlaylist)" style="cursor: pointer;">Nueva playlist</a>
+            <a class="nav-link" data-toggle="modal" (click)="open(seleccionaUsuario)" style="cursor: pointer;">Cambiar usuario</a>
         </li>
     </ul>
 </nav>
@@ -17,15 +17,14 @@
     </div>
     <div class="modal-body">
         Seleccione un usuario
-        <select class="form-control">
-            <option value="1">Usuario 1</option>
-            <option value="2">Usuario 2</option>
-            <option value="3">Usuario 3</option>
+        <select class="form-control" #userSelected>
+            <option value="">Select User</option>
+            <option [value]="user._id" *ngFor="let user of users">{{ user.nombreUsuario }}</option>
         </select>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Cerrar</button>
-        <button type="button" class="btn btn-outline-success" (click)="handleSelectUser()">Seleccionar Usuario</button>
+        <button type="button" class="btn btn-outline-success" (click)="handleSelectedUser(userSelected.value)">Seleccionar Usuario</button>
     </div>
 </ng-template>
 
@@ -36,8 +35,14 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <input type="text" name="nombrePlaylist" id="nombrePlaylist" class="form-control"
-            placeholder="Mix Regueton, Baladas, Salseo..">
+        <input 
+            type="text" 
+            name="nombrePlaylist" 
+            id="nombrePlaylist" 
+            class="form-control"
+            placeholder="Mix Regueton, Baladas, Salseo.."
+            [(ngModel)]="tituloPlaylist"
+        >
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Cerrar</button>

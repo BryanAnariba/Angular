@@ -8,7 +8,7 @@ export const getItems = async ( req: Request, res: Response ): Promise<Response>
     try {
         statusCode = 200
         const artistsResponse = await getAllArtists();
-        return res.status(statusCode).json({ statusCode: statusCode, data: artistsResponse });
+        return res.status(statusCode).json(artistsResponse);
     } catch (error) {
         statusCode = ( statusCode !== 0 ) ? statusCode : 500;
         return handleHttpResponse( res, statusCode, 'HTTP_GET_USER_SONGS_PLAYLIST_ERROR', error );
@@ -20,7 +20,7 @@ export const getItem = async ( req: Request, res: Response ): Promise<Response> 
         statusCode = 200
         const { artistId } = req.params;
         const artistsResponse = await getArtistAlbumes(artistId);
-        return res.status(statusCode).json({ statusCode: statusCode, data: artistsResponse });
+        return res.status(statusCode).json(artistsResponse);
     } catch (error) {
         statusCode = ( statusCode !== 0 ) ? statusCode : 500;
         return handleHttpResponse( res, statusCode, 'HTTP_GET_USER_SONGS_PLAYLIST_ERROR', error );
