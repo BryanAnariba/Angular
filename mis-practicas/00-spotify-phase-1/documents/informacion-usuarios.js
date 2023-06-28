@@ -1,4 +1,4 @@
-db.artistas.insertMany(
+db.artists.insertMany(
 [
     {
         "nombreArtista":"Artista 1",

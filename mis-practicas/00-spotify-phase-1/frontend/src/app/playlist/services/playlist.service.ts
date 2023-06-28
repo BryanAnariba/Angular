@@ -37,4 +37,26 @@ export class PlaylistService {
         )
       )
   }
+
+  public getPlaylistData( userId: string, playlistId: string ): Observable<User | null> {
+    return this.httpClient.get<User | null>( `${ API }/${ userId }/playlists/${ playlistId }/songs`, {} )
+      .pipe(
+        catchError( 
+          (error) => {
+            console.error(error);
+            return of(null);
+          }
+        )
+      );
+  }
+
+  public addSongToPlaylist( userId: string, playlistId: string, nombreCancion: string, artista: string, album: string ): Observable<User | null> {
+    return this.httpClient.post<User | null>( `${ API }/${ userId }/playlists/${ playlistId }/songs`, { nombreCancion, artista, album })
+      .pipe(
+        catchError( error => {
+          console.error(error);
+          return of(null)
+        })
+      );
+  }
 }

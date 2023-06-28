@@ -33,7 +33,7 @@ export const getItemsByUserIdAndPlaylistsId = async ( req: Request, res: Respons
         statusCode = 200
         const { userId, playlistId } = req.params;
         const userResponse = await getSongsOfOnePlaylistByUser( userId, playlistId );
-        return res.status(statusCode).json({ statusCode: statusCode, data: userResponse[0] });
+        return res.status(statusCode).json(userResponse[0]);
     } catch (error) {
         statusCode = ( statusCode !== 0 ) ? statusCode : 500;
         return handleHttpResponse( res, statusCode, 'HTTP_GET_USER_SONGS_PLAYLIST_ERROR', error );

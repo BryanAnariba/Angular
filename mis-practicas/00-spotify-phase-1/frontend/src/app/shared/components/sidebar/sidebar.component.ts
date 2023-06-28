@@ -14,6 +14,9 @@ import { PlaylistService } from 'src/app/playlist/services/playlist.service';
 export class SidebarComponent implements OnInit {
   @Input()
   public playlists?: Playlist[] = [];
+  
+  @Input()
+  public userSelected?: string = '';
 
   public faMusic = faMusic;
   public faPlay = faPlay;
@@ -33,7 +36,7 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.playlists);
+    //console.log(this.playlists);
     this.albumService.getAlbumes()
       .subscribe(
         ( artists ) => {

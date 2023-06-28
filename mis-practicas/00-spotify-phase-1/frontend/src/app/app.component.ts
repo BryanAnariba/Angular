@@ -8,8 +8,10 @@ import { Playlist, User } from './playlist/interfaces/Playlist';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public playlists?: Playlist[] = [];
   title = 'frontend';
+
+  public playlists?: Playlist[] = [];
+  public userSelected: string = '';
 
   constructor( private playlistService: PlaylistService ) {}
 
@@ -20,6 +22,7 @@ export class AppComponent {
         (userData) => {
           //console.log(userData?.playlists);
           this.playlists = userData?.playlists;
+          this.userSelected = userSelected;
         }
       )
   }

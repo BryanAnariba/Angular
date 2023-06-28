@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Album } from 'src/app/album/interfaces/Album';
-import { AlbumService } from 'src/app/album/services/album.service';
+import { PlaylistService } from '../../services/playlist.service';
+import { Playlist, User } from '../../interfaces/Playlist';
 
 @Component({
   selector: 'playlists-list',
@@ -10,25 +10,26 @@ import { AlbumService } from 'src/app/album/services/album.service';
   styleUrls: ['./playlists.component.css']
 })
 export class PlaylistsComponent implements OnInit {
-  public albumes?: Album[] = [];
+  public playlistData?: Playlist[] = [];
+  public userData?: User | null;
+
   constructor ( 
     private activatedRoute: ActivatedRoute,
-    private albumService: AlbumService
+    private playlistService: PlaylistService
   ) {
   }
   ngOnInit(): void {
     this.activatedRoute.params
     .pipe(
-      switchMap(
-        (param) => this.albumService.getAlbumesByArtist( param['playlistId'] )
-      )
+      switchMap( param => this.playlistService.getPlaylistData(param['userId'], param['playlistId'] ) )
     )
     .subscribe(
-      (albumes) => {
-        //console.log(albumes);
-        this.albumes = albumes?.albumes;
+      ( user ) => {
+        //console.log(user?.playlists![0]);
+        this.userData = user;
+        this.playlistData = user?.playlists;
       }
-    )
+    );
   }
   
 }

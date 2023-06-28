@@ -7,7 +7,7 @@
             </a>
         </h6>
         <li class="nav-item" *ngFor="let artist of artists">
-            <a class="nav-link" [routerLink]="['/playlists/' + artist._id]"><fa-icon [icon]="faMusic"></fa-icon> {{ artist.nombreArtista }}</a>
+            <a class="nav-link" [routerLink]="['/albumes/' + artist._id + '/user/' + userSelected]"><fa-icon [icon]="faMusic"></fa-icon> {{ artist.nombreArtista }}</a>
         </li>
     </ul>
     <ul class="nav flex-column">
@@ -18,7 +18,7 @@
             </a>
         </h6>
         <li class="nav-item" *ngFor="let playlist of playlists">
-            <div class="nav-link" [routerLink]="['/albumes/' + playlist._id]"><fa-icon [icon]="faPlay"></fa-icon> {{ playlist.tituloPlaylist }}</div>
+            <div class="nav-link" [routerLink]="['/playlists/' + playlist._id + '/user/' + userSelected]"><fa-icon [icon]="faPlay"></fa-icon> {{ playlist.tituloPlaylist }}</div>
         </li>
     </ul>
 </div>

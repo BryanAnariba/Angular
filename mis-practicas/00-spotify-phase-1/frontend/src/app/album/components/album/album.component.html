@@ -1,103 +1,44 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-4 text-center">
-            <h5>Playlist 1</h5>
-            <div class="cover-image">
-                <fa-icon [icon]="faMusic"></fa-icon>
-            </div>
+            <div class="cover-image" [style.backgroundImage]="getUrl( album!.caratulaAlbum )">
+            </div><br>
+            <h5 class="text-muted">{{ album!.nombreAlbum }}</h5>
             <button class="btn btn-success" type="button">Play</button>
         </div>
         <div class="col-8">
-
-            <!--Item 1 -->
-            <div class="row song-item">
+            <!--Item -->
+            <div class="row song-item" *ngFor="let cancion of album!.canciones">
                 <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
                 <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
+                    <div class="song-title">{{ cancion.nombreCancion }}</div>
+                    <div class="song-description">{{ nombreArtista }}</div>
                 </div>
                 <div class="col-1">
-                    <span>3:56</span>
+                    <span>{{ cancion.duracion }}</span>
+                    <button (click)="handleOpenModal(agregaAlbum, cancion.nombreCancion, album!.nombreAlbum)" class="btn btn-outline-success btn-sm"
+                        title="Agregar a playlist"><fa-icon [icon]="faPlus"></fa-icon></button>
                 </div>
             </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
-            <div class="row song-item">
-                <div class="col-1"><fa-icon [icon]="faPlay"></fa-icon></div>
-                <div class="col-10">
-                    <div class="song-title">Cancion</div>
-                    <div class="song-description">Artista - Album</div>
-                </div>
-                <div class="col-1">
-                    <span>3:56</span>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
+<hr>
+
+<!--Modal Playlists-->
+<ng-template #agregaAlbum let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">Agregar a playlist</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        Seleccione una playlist
+        <select class="form-control" #playlistSelected>
+            <option *ngFor="let playlist of playlists" [value]="playlist._id">{{ playlist.tituloPlaylist }}</option>
+        </select>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Cerrar</button>
+        <button type="button" class="btn btn-outline-success" (click)="handleAddToPlaylist(playlistSelected.value)">Agregar</button>
+    </div>
+</ng-template>
