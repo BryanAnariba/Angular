@@ -1,7 +1,16 @@
-<input 
+<!-- <input 
     type="text" 
     class="form-control" 
     [placeholder]="placeHolder"
     #criterioBusquedaVal
     (keyup.enter)="onValue(criterioBusquedaVal.value)"
+> -->
+
+<input 
+    type="text" 
+    class="form-control" 
+    [placeholder]="placeHolder"
+    #criterioBusquedaVal
+    (keyup)="onValue( criterioBusquedaVal.value )"
+    [value]="initialValue"
 >
