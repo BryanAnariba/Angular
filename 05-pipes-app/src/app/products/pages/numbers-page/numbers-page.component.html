@@ -1,0 +1,28 @@
+<p-panel header="Pipes Numericos" class="p-1">
+    <h1>
+        Pipes Basicos
+    </h1>
+    <p>
+        Pipes incluidos en Angular - Usualmente en el Common Module
+    </p>
+</p-panel>
+
+<div class="grid">
+    <div class="col-12 md:col-4">
+        <p-card header="Ventas Netas" subheader="Del presente 2023">
+            Dos Decimales 1.2-2 = {{ totalSells | number: '1.2-2' }} 
+        </p-card>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <p-card header="Ventas Netas" subheader="Del presente 2023">
+            Cuatro Decimales = {{ totalSells | currency: 'HNL': 'symbol-narrow': '1.4-4' }} 
+        </p-card>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <p-card header="Ganancias Porcentuales" subheader="Del presente 2023">
+            {{ percent | percent: '1.2-2' }}
+        </p-card>
+    </div>
+</div>

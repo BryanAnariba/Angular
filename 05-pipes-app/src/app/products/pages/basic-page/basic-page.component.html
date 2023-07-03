@@ -1,0 +1,70 @@
+<p-panel header="Pipes Basicos" class="p-1">
+    <h1>
+        Pipes Basicos
+    </h1>
+    <p>
+        Pipes incluidos en Angular - Usualmente en el Common Module
+    </p>
+</p-panel>
+
+<div class="grid">
+    <div class="col-12 md:col-4">
+        <p-card header="uppercase">
+            {{ nameLower | uppercase }}
+        </p-card>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <p-card header="lowecase">
+            {{ nameUpper | lowercase }}
+        </p-card>
+    </div>
+
+    <div class="col-12 md:col-4">
+        <p-card header="titlecase">
+            {{ fullName | titlecase }}
+        </p-card>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <p-card header="titlecase">
+            <ol>
+                <li>Date: </li>
+                <li>Pipe Date: </li>
+                <li>Pipe Date Short: </li>
+                <li>Pipe Date Long: </li>
+                <li>Pipe Date (MMMM): </li>
+                <li>Pipe Date (MMMM dd, yyyy): </li>
+            </ol>
+
+            <hr>
+            <ol>
+                <li>Pipe Date Time Zone GMT-6: </li>
+                <li>Pipe Date Time Zone GMT-5: </li>
+                <li>Pipe Date Time Zone GMT-6: 'es-HN' </li>
+                <li>Pipe Date Time Zone GMT-6: 'fr-CA' </li>
+            </ol>
+        </p-card>
+    </div>
+
+    <div class="col-12 md:col-6">
+        <p-card header="titlecase">
+            <ol>
+                <li>{{ customDate }}</li>
+                <li>{{ customDate | date }}</li>
+                <li>{{ customDate | date: 'short' }}</li>
+                <li>{{ customDate | date: 'long' }}</li>
+                <li>{{ customDate | date: 'MMMM' }}</li>
+            </ol>
+
+            <hr>
+            <ol>
+                <li>{{ customDate | date: 'long': 'GMT-6' }} </li>
+                <li>{{ customDate | date: 'long': 'GMT-5' }} </li>
+                <li>{{ customDate | date: 'long': 'GMT-6': 'es-HN' }} </li>
+                <li>{{ customDate | date: 'long': 'GMT-5': 'fr-CA' }} </li>
+            </ol>
+        </p-card>
+    </div>
+</div>
+
