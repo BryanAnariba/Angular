@@ -24,4 +24,29 @@ export class HeroService {
       )
     );
   }
+
+  getHero ( id: string ): Observable<Hero | undefined> {
+    return this.http.get<Hero | undefined>( `${ this.basicUrl }/heroes/${ id }`, {})
+    .pipe(
+      catchError(
+        error => {
+          console.error(error);
+          return of(undefined);
+        }
+      )
+    );
+  }
+
+  // ESTO ES PARA EL SEARCH COMPONENT LA BUSQUEDA DE HEROES CON AUTOCOMPLETADO
+  getSuggestions ( query: string ): Observable<Hero[]> {
+    return this.http.get<Hero[]>( `${ this.basicUrl }/heroes?q=${ query }&limit=6` )
+    .pipe(
+      catchError(
+        error => {
+          console.error(error);
+          return of ([])
+        }
+      )
+    );
+  }
 }
