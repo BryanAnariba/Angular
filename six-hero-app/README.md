@@ -1,6 +1,6 @@
 # Heroes App
 
-## Dev
+## Como Ejecutarlo
 
 1. Clonar el proyecto
 2. Ejecutar ```npm install```
