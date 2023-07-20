@@ -2,8 +2,18 @@
   "users": [
     {
       "id": 1,
-      "usuario": "John Doe",
+      "user": "John Doe",
       "email": "john.due@gmail.com"
+    },
+    {
+      "email": "bryananariba@gmail.com",
+      "password": "12356",
+      "id": 2
+    },
+    {
+      "email": "bryananariba@gmail.com",
+      "password": "12356",
+      "id": 3
     }
   ],
   "heroes": [
@@ -21,8 +31,7 @@
       "publisher": "DC Comics",
       "alter_ego": "Kal-El",
       "first_appearance": "Action Comics #1",
-      "characters": "Kal-El",
-      "alt_img": "https://media.revistagq.com/photos/633e85f6a9c72d07060d4a8d/4:3/w_1124,h_843,c_limit/henry-cavill-superman-black-adam.jpg"
+      "characters": "Kal-El"
     },
     {
       "id": "dc-flash",
@@ -30,8 +39,7 @@
       "publisher": "DC Comics",
       "alter_ego": "Jay Garrick",
       "first_appearance": "Flash Comics #1",
-      "characters": "Jay Garrick, Barry Allen, Wally West, Bart Allen",
-      "alt_img": "https://rare-gallery.com/thumbs/342813-The-Flash-Movie-2022-Movie-Art.jpg"
+      "characters": "Jay Garrick, Barry Allen, Wally West, Bart Allen"
     },
     {
       "id": "dc-green",
@@ -162,13 +170,12 @@
       "characters": "Scott Summers"
     },
     {
-      "id": "uhxtXzC",
-      "superhero": "Savitar",
-      "publisher": "DC Comics",
-      "alter_ego": "Reverse",
-      "first_appearance": "Flash 4 Temporada",
-      "characters": "Bad Barry Allen",
-      "alt_img": "https://scontent.ftgu2-3.fna.fbcdn.net/v/t31.18172-8/18121372_1185883668188356_342593121220089223_o.jpg?_nc_cat=108&ccb=1-7&_nc_sid=9267fe&_nc_eui2=AeFyqY1mg43qXZzB0plG--ouYw7pXGMke-FjDulcYyR74QB4RJnWi6NVl80fGNdXZZh6ti6C-9rXZvOIst11DUjC&_nc_ohc=_JAPjGHGeSYAX8SDa8x&_nc_ht=scontent.ftgu2-3.fna&oh=00_AfAEoxTkWKESB3JRS_GICoK0A7SFgcy-zzK5REkduVaD5g&oe=64DD44A3"
+      "id": "marvel-silver",
+      "superhero": "Silver Surfer",
+      "publisher": "Marvel Comics",
+      "alter_ego": "Norrin Radd",
+      "first_appearance": "The Fantastic Four #48",
+      "characters": "Norrin Radd"
     }
   ]
 }

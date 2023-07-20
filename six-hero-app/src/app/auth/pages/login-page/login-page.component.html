@@ -8,7 +8,12 @@
     <mat-label>Clave: </mat-label>
     <input type="password" matInput placeholder="Clave Usuario">
   </mat-form-field>
-  <button mat-button mat-flat-button color="primary">
+  <button
+    mat-button
+    mat-flat-button
+    color="primary"
+    (click)="handleLogin()"
+  >
     <mat-icon>save</mat-icon> Iniciar Sesion
   </button>
 
