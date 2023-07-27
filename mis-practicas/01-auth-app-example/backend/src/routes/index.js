@@ -14,6 +14,7 @@ const getRoute = ( fileName ) => {
     return fileName.split( '.' ).shift();
 }
 
+console.clear();
 readdirSync( __dirname ).filter( fileName => {
     const routeName = getRoute(fileName);
     if ( routeName !== 'index') {

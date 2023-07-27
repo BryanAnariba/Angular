@@ -2,6 +2,7 @@ import 'colors';
 import express from 'express';
 import cors from 'cors';
 import indexRoutes from './routes/index.js';
+import { connectDB } from './config/database.js';
 
 class Server {
     constructor () {
@@ -29,17 +30,21 @@ class Server {
 
     }
 
-    dbConnection () {
-
-    }
-
-    start () {
-        this.app.listen( this.app.get('PORT'), () => {
-            console.clear();
-            console.log('==================================='.yellow);
+    async start () {
+        try {
+            console.log('=============================================================='.yellow);
+            const [ server, db ] = await Promise.all(
+                [
+                    this.app.listen( this.app.get('PORT')),
+                    connectDB()
+                ]
+            );
             console.log( `NodeJS Server started on port: ${ this.app.get('PORT') }`.green );
-            console.log('==================================='.yellow);
-        });
+            console.log( `MongoDB Started at: ${ db.connection.host }`.green )
+            console.log('=============================================================='.yellow);
+        } catch ( err ) {
+            throw Error( `Error: ${ err }` )
+        }
     }
 }
 

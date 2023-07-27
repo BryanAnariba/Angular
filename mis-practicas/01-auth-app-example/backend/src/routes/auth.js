@@ -1,13 +1,9 @@
 import { Router } from "express";
+import { signIn, signUp } from "../controllers/User.js";
 
 const router = Router();
 
-router.post( '/signin', (req, res) => {
-    return res.status(200).json('Signin Works')
-});
-
-router.post( '/signup', (req, res) => {
-    return res.status(200).json('Signup Works')
-});
+router.post( '/signin', signIn );
+router.post( '/signup', signUp );
 
 export { router };
