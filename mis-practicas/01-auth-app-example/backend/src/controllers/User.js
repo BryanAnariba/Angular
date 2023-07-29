@@ -2,6 +2,7 @@ import { response, request } from "express";
 import { handleHttp } from "../utils/http.handle.js";
 import { createUser, findUserByEmail, findUserByUserName } from "../services/user.service.js";
 import { encryptPassword, verifyPassword } from "../utils/bcrypt.handle.js";
+import { createToken } from "../utils/jwt.handle.js";
 
 let statusCode = 0;
 
@@ -78,8 +79,10 @@ export const signIn = async ( req = request, res = response ) => {
                 statusCode = 400;
                 throw new Error( `Incorrect password` );
             }
-
-            return handleHttp( res, statusCode, existsEmail );
+            statusCode = 200;
+            const token = createToken(existsEmail._id, existsEmail.isAdmin, existsEmail.role);
+            res.cookie('access_token', token, { httpOnly: true });
+            return handleHttp( res, statusCode, { user: existsEmail, token: token } );
     } catch ( error ) {
         statusCode = ( statusCode !== 0 ) ? statusCode : 500;
         return handleHttp( res, statusCode, error.message );
