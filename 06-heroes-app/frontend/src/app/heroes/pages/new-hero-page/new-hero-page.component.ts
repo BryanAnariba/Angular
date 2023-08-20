@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-hero-page.component.scss']
 })
 export class NewHeroPageComponent {
-
+  public publishers = [
+    { id: 'DC Comics', value: 'DC - Comics' },
+    { id: 'Marvel Comics', value: 'Marvel - Comics' }
+  ]
 }

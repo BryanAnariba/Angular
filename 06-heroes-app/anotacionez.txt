@@ -1,0 +1,13 @@
+Creacion de variables de entorno
+    crear carpeta environments
+        crear dos archivos environments.ts y environments.prod.ts
+
+    ir a angular.json y agregar en production el fileReplacements
+        "production": {
+            "fileReplacements": [
+                { 
+                    "replace": "src/environments/environments.ts",
+                    "with": "src/environments/environments.prod.ts"
+                }
+            ],
+        }
