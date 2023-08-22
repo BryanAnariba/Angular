@@ -21,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutPageComponent,
     SearchHeroPageComponent,
     HeroCardComponent,
-    HeroImagePipe
+    HeroImagePipe,
   ],
   imports: [
     CommonModule,
