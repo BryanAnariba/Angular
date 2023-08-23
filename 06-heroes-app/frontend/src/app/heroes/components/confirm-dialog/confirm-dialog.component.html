@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>This Hero will be delete!, Are you sure?</h2>
+<mat-dialog-content>Delete super hero {{ data.superhero }}</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button  (click)="onNoClick()">Cancel</button>
+  <span class="spacer"></span>
+  <button mat-button cdkFocusInitial (click)="onConfirm()" color="warn">Delete</button>
+</mat-dialog-actions>
