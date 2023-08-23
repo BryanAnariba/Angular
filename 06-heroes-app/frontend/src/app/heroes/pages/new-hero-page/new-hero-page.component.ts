@@ -76,7 +76,8 @@ export class NewHeroPageComponent implements OnInit {
         hero => {
           console.log(hero);
           // TODO: mostrar snackbar que diga heroes actualizado exitosamente y redirigir a los heroes
-          this.showSnackbar( `${ hero?.superhero } updated successfully!` )
+          this.showSnackbar( `${ hero?.superhero } updated successfully!` );
+          this.router.navigate(['/heroes']);
         }
       );
     } else {
@@ -86,6 +87,7 @@ export class NewHeroPageComponent implements OnInit {
           console.log(hero);
           // TODO: mostrar snackbar que diga heroes creado exitosamente y redirigir a los heroes
           this.showSnackbar( `${ hero?.superhero } created successfully!` );
+          this.router.navigate(['/heroes']);
         }
       )
     }
