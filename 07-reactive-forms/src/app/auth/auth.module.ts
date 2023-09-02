@@ -7,6 +7,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NewAccountPageComponent } from './pages/new-account-page/new-account-page.component';
 import { ForgetPasswordPageComponent } from './pages/forget-password-page/forget-password-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +16,12 @@ import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-pa
     LoginPageComponent,
     NewAccountPageComponent,
     ForgetPasswordPageComponent,
-    ResetPasswordPageComponent
+    ResetPasswordPageComponent,
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }
