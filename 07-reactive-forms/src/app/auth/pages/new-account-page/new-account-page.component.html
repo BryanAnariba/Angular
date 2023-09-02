@@ -27,7 +27,7 @@
                 <div class="col-sm-9">
                     <input type="email" class="form-control" placeholder="Email del usuario" formControlName="userEmail">
                     <span class="form-text text-danger" *ngIf="isValidField( 'userEmail' )">
-                        mensaje de error del email
+                        {{ getFieldErrors('userEmail') }}
                     </span>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                 <div class="col-sm-9">
                     <input type="text" class="form-control" placeholder="Nombre código del usuario" formControlName="userName">
                     <span class="form-text text-danger" *ngIf="isValidField('userName')">
-                        El username no puede ser Strider
+                        The user cannot be strider
                     </span>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                 <div class="col-sm-9">
                     <input type="password" class="form-control" placeholder="Confirmar la contraseña" formControlName="passwordTwo">
                     <span class="form-text text-danger" *ngIf="isValidField('passwordTwo')">
-                        Las contraseñas deben de ser iguales
+                        {{ getFieldErrors('passwordTwo') }}
                     </span>
                 </div>
             </div>
@@ -98,4 +98,4 @@
 <pre>{{ myForm.value.password | json }}</pre>
 
 <h5>Confirmar</h5>
-<pre>{{ myForm.value.passwordTwo | json }}</pre>
+<pre>{{ myForm.controls['passwordTwo'].errors | json }}</pre>

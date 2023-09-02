@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +26,19 @@ export class ValidatorsService {
       &&
       form.controls[field].touched
     );
+  }
+  
+  isFieldOneEqualsFieldTwo ( fieldOne: string, fieldTwo: string ) {
+    return ( formGroup: AbstractControl ):  ValidationErrors | null => {
+      const fieldValueOne = formGroup.get( fieldOne )?.value;
+      const fieldValueTwo = formGroup.get( fieldTwo )?.value;
+      if ( fieldValueOne !== fieldValueTwo) {
+        formGroup.get(fieldTwo)?.setErrors({ notEqual: true });
+        return {notEqual: true}
+      }
+      // Si las claves hacen match exito puedes registrarlo
+      formGroup.get(fieldTwo)?.setErrors(null);
+      return null;
+    }
   }
 }
