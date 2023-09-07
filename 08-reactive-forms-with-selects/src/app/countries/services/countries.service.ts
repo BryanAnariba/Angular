@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Region, SmallCountry } from '../interfaces/countries.interfaces';
+import { Country, Region, SmallCountry } from '../interfaces/countries.interfaces';
 import { apiUrl } from 'src/app/environments/environments.dev';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -20,10 +20,13 @@ export class CountriesService {
 
   public getCountriesByRegion ( region: string | null ): Observable<SmallCountry[]> {
     if ( !region ) return of([]);
-    return this.httpClient.get<SmallCountry[]>( `${ this._apiUrl }/region/${ region }?fields=cca3,name,borders`, {})
+    return this.httpClient.get<Country[]>( `${ this._apiUrl }/region/${ region }?fields=cca3,name,borders`, {})
     .pipe(
+      map(
+        countries => countries.map( country => ({ name: country.name.common, cca3: country.cca3, borders: country.borders ?? [] })) // Transformamos la data que da el endpoint de tipo Country a SmallCountry
+      ),
       tap(
-        res => console.log(res)
+        res => console.log({ countriesByRegion: res })
       ),
       catchError(
         error => {
@@ -32,6 +35,16 @@ export class CountriesService {
         }
       )
     )
+  }
+
+  public getBordersByAlphaCode( alphaCode: string | null ) : Observable<SmallCountry> {    
+    console.log({alphaCode});
+    return this.httpClient.get<Country>( `${ this._apiUrl }/alpha/${ alphaCode }?fields=cca3,name,borders`, {} )
+    .pipe(
+      map(
+        country=> ({ name: country!.name.common, cca3: country!.cca3, borders: country?.borders ?? [] } )
+      )
+    );
   }
 
 }
