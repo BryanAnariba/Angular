@@ -1,0 +1,35 @@
+<hr>
+<div class="container">
+    <form class="form" [formGroup]="myForm">
+
+        <!--Regions-->
+        <div class="row mb-3">
+            <div class="col">
+                <label for="continente" class="form-label">Continente: </label>
+                <select name="continente" id="continente" class="form-control" formControlName="region">
+                    <option value="">--Seleccione Continente--</option>
+                    <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+                </select>
+            </div>
+        </div>
+        
+        <!--Countries-->
+        <div class="row mb-3">
+            <div class="col">
+                <label for="pais" class="form-label">Pais: </label>
+                <select name="pais" id="continente" class="form-control" formControlName="region">
+                    <option value="">--Seleccione Pais--</option>
+                </select>
+            </div>
+        </div>
+        
+    </form>
+
+    <h3>Formulario</h3>
+    <code>
+        {{ myForm.value | json }}
+    </code>
+    <p>
+        Is Form Valid: {{ myForm.valid }}
+    </p>
+</div>
