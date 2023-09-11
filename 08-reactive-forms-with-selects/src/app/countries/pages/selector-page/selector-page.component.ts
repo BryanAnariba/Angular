@@ -12,7 +12,7 @@ import { filter, pipe, switchMap, tap } from 'rxjs';
 export class SelectorPageComponent implements OnInit {
 
   public countriesByRegion: SmallCountry[] = [];
-  public borders: string[] = [];
+  public borders: SmallCountry[] = [];
   constructor ( private fb: FormBuilder,  private countriesService: CountriesService ) {}
 
   ngOnInit(): void {
@@ -49,16 +49,17 @@ export class SelectorPageComponent implements OnInit {
   }
 
   public onChangeCountry (): void {
-    this.myForm.get('country')!.valueChanges
+    this.myForm.get('country')?.valueChanges
     .pipe(
-      tap(() => this.myForm.get('border')!.setValue('')),
-      filter( (value: string) => value.length > 0 ), // como en el ngoninit se ejecutan ambas cosas ahi lo que hay si el usuario aun no a seleccionado el pais no hay alpha code entonces no hay nacesidad de ejecutar este metodo
-      switchMap( (alphaCode) => this.countriesService.getBordersByAlphaCode(alphaCode) )
+      tap(() => this.myForm.get('border')?.setValue('')),
+      filter( (value) => (value) ? true : false ), // como en el ngoninit se ejecutan ambas cosas ahi lo que hay si el usuario aun no a seleccionado el pais no hay alpha code entonces no hay nacesidad de ejecutar este metodo
+      switchMap( (alphaCode) => this.countriesService.getBordersByAlphaCode(alphaCode) ), // esta peticion retorna los alpha codes de los paises que colindan con el seleccionado
+      switchMap( (country) => this.countriesService.getCountryBordersByCodes( country.borders )) // esta peticion busca los nombres de los paises con los alpha codes que colindan con el seleccionado
     )
     .subscribe(
-      country => {
-        console.log(country)
-        this.borders = country.borders ?? [];
+      countries => {
+        console.log(countries)
+        this.borders = countries;
       }
     )
   }
