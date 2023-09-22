@@ -11,14 +11,15 @@ interface MenuItem {
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  // public sidebarItems: MenuItem[] = [
-  //   { title: 'Counter', route: 'counter' },
-  //   { title: 'User Info', route: 'user-info' },
-  //   { title: 'Mutations', route: 'properties' },
-  // ];
-  public sidebarItems = signal<MenuItem[]>([
+  public sidebarItems: MenuItem[] = [
     { title: 'Counter', route: 'counter' },
     { title: 'User Info', route: 'user-info' },
     { title: 'Mutations', route: 'properties' },
-  ]);
+  ];
+
+  // public sidebarItems = signal<MenuItem[]>([
+  //   { title: 'Counter', route: 'counter' },
+  //   { title: 'User Info', route: 'user-info' },
+  //   { title: 'Mutations', route: 'properties' },
+  // ]);
 }
