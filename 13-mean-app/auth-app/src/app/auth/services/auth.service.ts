@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { environments } from 'src/environments/environments';
 import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
-import { CheckResponseToken, LoginResponse, User } from '../interfaces';
+import { CheckResponseToken, LoginResponse, RegisterResponse, User } from '../interfaces';
 import { AuthStatus } from '../enums';
 
 @Injectable({
@@ -29,6 +29,26 @@ export class AuthService {
     this._authStatus.set(AuthStatus.authenticated);
     localStorage.setItem('token', token);
     return true;
+  }
+
+  register (email: string, password: string, name: string): Observable<boolean> {
+    const url = `${ this.baseUrl }/auth/register`;
+    const body = { name, email, password };
+    return this.httpClient.post<RegisterResponse>( `${url}`, body )
+    .pipe(
+      map(
+        ({user, token}) => {
+          console.log('Success: ', { user, token });
+          return this.setAuthentication(user, token);
+        }
+      ),
+      catchError(
+        err => {
+          console.error(err);
+          return throwError(() => err.message)
+        }
+      )
+    )
   }
 
   login ( email: string, password: string ): Observable<boolean> {
