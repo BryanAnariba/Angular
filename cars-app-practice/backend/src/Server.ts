@@ -2,6 +2,7 @@ import 'colors';
 import cors from 'cors';
 import express, { Application, json, urlencoded } from "express";
 import indexRoutes from './routes/index';
+import { connectMe } from './config/DataBase';
 
 interface StartServerOptions {
   port: string | number;
@@ -39,10 +40,12 @@ export class Server {
 
   async start(): Promise<void> {
     try {
-      await this.app.listen(this.app.get('PORT'))
-      console.log(`====================================`.red);
+      await this.app.listen(this.app.get('PORT'));
+      const conn = await connectMe();
+      console.log(`========================================================================`.red);
       console.log(`Node JS Server started on port: ${ this.app.get('PORT') }`.cyan);
-      console.log(`====================================`.red);
+      console.log(`MongoDB started on port: ${ conn.connection.host }`.cyan);
+      console.log(`========================================================================`.red);
     } catch (error) {
       throw new Error( `Error: ${ (error instanceof Error) ? error.message : error  }` );
     }

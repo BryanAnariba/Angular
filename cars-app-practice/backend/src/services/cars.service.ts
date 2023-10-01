@@ -1,0 +1,17 @@
+import { Car } from "../interfaces";
+import { CarModel } from "../models";
+
+export class CarService {
+
+  async createNewCar( car: Car ): Promise<Car> {
+    return await CarModel.create(car);
+  }
+
+  async getAllCars(limit: number =10,skip: number=0): Promise<Car[]> {
+    return await CarModel.find().limit(limit).skip(skip);
+  }
+  
+  async getCar(carId: string): Promise<Car | null> {
+    return await CarModel.findOne({_id: carId});
+  }
+}
