@@ -8,10 +8,19 @@ export class CarService {
   }
 
   async getAllCars(limit: number =10,skip: number=0): Promise<Car[]> {
-    return await CarModel.find().limit(limit).skip(skip);
+    return await CarModel.find({ status: true }).limit(limit).skip(skip);
   }
   
   async getCar(carId: string): Promise<Car | null> {
-    return await CarModel.findOne({_id: carId});
+    return await CarModel.findOne({_id: carId, status: true});
   }
+
+  async editCarData( car: Car, carId: string ): Promise<Car | null> {
+    return await CarModel.findByIdAndUpdate({ _id: carId }, car, { new: true });
+  }
+
+  async softDeleteCar( carId: string ): Promise<Car | null> {
+    return await CarModel.findByIdAndUpdate({ _id: carId }, { status: false }, { new: true });
+  }
+
 }

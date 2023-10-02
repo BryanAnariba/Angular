@@ -5,4 +5,5 @@ export interface Car {
   description: string;
   price: number;
   image?: string;
+  status: boolean;
 }

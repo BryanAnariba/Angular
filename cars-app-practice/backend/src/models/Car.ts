@@ -6,6 +6,8 @@ const carSchema = new Schema<Car>(
     color: {
       type: String,
       required: [ true, 'Color is required' ],
+      trim: true,
+      uppercase: true,
     },
     year: {
       type: Number,
@@ -19,6 +21,7 @@ const carSchema = new Schema<Car>(
     description: {
       type: String,
       required: [ true, 'Description is required' ],
+      trim: true,
     },
     price: {
       type: Number,
@@ -27,6 +30,11 @@ const carSchema = new Schema<Car>(
     image: {
       type: String,
       default: '',
+      trim: true,
+    },
+    status: {
+      type: Boolean,
+      default: true
     }
   },
   {

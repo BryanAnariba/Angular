@@ -1,9 +1,10 @@
 import { Router } from "express";
+import { AuthController } from "../controller/Auth";
 
 const router: Router = Router();
 
-router.get('', (req, res) => {
-  return res.status(200).json({ data: 'Auth is working!' });
-});
+router
+  .post('/new-account', AuthController.newAccount)
+  .post('/sign-in', AuthController.signIn);
 
 export {router};
