@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { AuthService } from "../services/auth.service";
-import { errorHandle } from "../utils";
+import { createJwt, encrypt, errorHandle, matchParams } from "../utils";
 import { UserService } from "../services/users.service";
-import { User } from "../interfaces";
+import { Auth, User } from "../interfaces";
 
 export class AuthController {
 
@@ -10,7 +10,24 @@ export class AuthController {
 
   public static async signIn ({body}: Request, res: Response): Promise<Response> {
     try {
-      return res.status(200).json({data: 'works'})
+      const { email, password }: Auth = body;
+      const authService: AuthService = new AuthService();
+      const dbResponse = await authService.loginUser({ email, password });
+      if ( !dbResponse ) {
+        AuthController.statusCode = 400;
+        throw new Error( `User with email ${ email } not found` );
+      }
+      const isMatchPassword = matchParams(password, dbResponse.password);
+      if ( !isMatchPassword ) {
+        AuthController.statusCode = 400;
+        throw new Error(`Invalid Credentials`);
+      }
+      AuthController.statusCode = 200;
+      const token = createJwt(dbResponse);
+      return res.status(200).json({
+        token: token,
+        user: dbResponse
+      });
     } catch (e) {
       AuthController.statusCode = ( AuthController.statusCode !== 0 ) ? AuthController.statusCode : 500;
       return errorHandle(res, AuthController.statusCode, e);
@@ -19,7 +36,6 @@ export class AuthController {
 
   public static async newAccount ({body}: Request, res: Response): Promise<Response> {
     try {
-      
       const userService: UserService = new UserService();
       const authService: AuthService = new AuthService();
       const existsUser = await userService.findUser(body.email);
@@ -28,8 +44,12 @@ export class AuthController {
         throw new Error(`User ${ body.email } already exists`);
       }
       const { firstName, lastName, email, password }: User = body;
-      const dbResponse = await authService.createNewUser({ firstName, lastName, email, password });
-      return res.status(201).json(dbResponse);
+      const dbResponse = await authService.createNewUser({ firstName, lastName, email, password: encrypt(password) });
+      const token = createJwt(dbResponse);
+      return res.status(200).json({
+        token: token,
+        user: dbResponse
+      });
     } catch (e) {
       AuthController.statusCode = ( AuthController.statusCode !== 0 ) ? AuthController.statusCode : 500;
       return errorHandle(res, AuthController.statusCode, e);

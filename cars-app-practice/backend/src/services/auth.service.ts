@@ -7,8 +7,8 @@ export class AuthService {
     return await userModel.create(user);
   }
 
-  public async loginUser (authUser: Auth) {
-
+  public async loginUser (authUser: Auth): Promise<User | null> {
+    return await userModel.findOne({email: authUser.email, status: true});
   }
 
 }
