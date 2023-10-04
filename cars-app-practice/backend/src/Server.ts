@@ -10,7 +10,7 @@ interface StartServerOptions {
 
 export class Server {
 
-  private readonly app!: Application;
+  private readonly app!: Application | any;
   private readonly port!: number | string;
 
   constructor ( {port}: StartServerOptions ) {

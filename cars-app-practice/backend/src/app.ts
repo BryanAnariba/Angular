@@ -5,7 +5,7 @@ const main = async () => {
   const server = new Server({port: process.env.PORT || 3500});
   await server.start();
 }
-// 1:55
+
 (() => {
   main();
 })()

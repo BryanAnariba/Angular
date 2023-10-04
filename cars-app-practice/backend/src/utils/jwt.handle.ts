@@ -6,6 +6,10 @@ export const createJwt = (user: User) => {
   return jwt;
 }
 
-export const verifyJwt = async () => {
-
+export const verifyJwt = async (token: string) => {
+  try {
+    return verify(token, `${process.env.SECRET_JWT}`)
+  } catch (e) {
+    throw new Error(`${e}`);
+  }
 }
