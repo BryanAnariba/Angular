@@ -1,4 +1,5 @@
 import 'colors';
+import path from 'node:path';
 import cors from 'cors';
 import express, { Application, json, urlencoded } from "express";
 import indexRoutes from './routes/index';
@@ -19,6 +20,7 @@ export class Server {
     this.settings();
     this.middlewares();
     this.routes();
+    this.staticFiles();
   }
 
   settings (): void {
@@ -36,6 +38,8 @@ export class Server {
   }
   
   staticFiles (): void {
+    console.log(path.resolve())
+    this.app.use('/storage',express.static(path.join(path.resolve(), 'storage'))); 
   }
 
   async start(): Promise<void> {

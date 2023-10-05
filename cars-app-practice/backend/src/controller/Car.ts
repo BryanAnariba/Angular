@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { errorHandle } from "../utils";
-import { Car } from "../interfaces";
+import { Car, ExtendedRequest } from "../interfaces";
 import { CarService } from "../services/cars.service";
+import { Types } from "mongoose";
 
 export class CarController {
 
@@ -35,11 +36,24 @@ export class CarController {
     }
   }
 
-  public static async postItem (req: Request, res: Response): Promise<Response> {
+  public static async postItem (req: ExtendedRequest, res: Response): Promise<Response> {
     try {
       const { color, year, description, gas, price, image = '' }: Car = req.body;
+      const { user, file } = req;
+      //console.log({file})
       const carService = new CarService();
-      const dbResponse = await carService.createNewCar({ color, year, description, gas, price, image, status: true });
+      const dbResponse = await carService.createNewCar({ 
+        color: color, 
+        year: year, 
+        description: 
+        description,
+        gas: gas, 
+        price: price, 
+        status: true, 
+        user: `${user}`, 
+        image: `${file?.filename}`, 
+        path: `${file?.path}` 
+      });
       return res.status(201).json(dbResponse);
     } catch (e) {
       CarController.statusCode = ( CarController.statusCode !== 0) ? CarController.statusCode : 500;

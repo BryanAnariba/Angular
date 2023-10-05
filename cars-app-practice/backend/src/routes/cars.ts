@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { CarController } from "../controller";
-import { checkJwt } from "../middlewares";
+import { checkJwt, multerMiddleware } from "../middlewares";
 
 const router: Router = Router();
 /*
@@ -8,9 +8,9 @@ const router: Router = Router();
 */
 router
   .get('' ,[checkJwt] , CarController.getItems)
-  .get('/:cardId', [], CarController.getItem)
-  .post('', [], CarController.postItem)
-  .put('/:cardId', [], CarController.putItem)
-  .delete('/:cardId', [], CarController.deletetItem);
+  .get('/:cardId', [checkJwt], CarController.getItem)
+  .post('', [checkJwt, multerMiddleware.single('image')], CarController.postItem)
+  .put('/:cardId', [checkJwt], CarController.putItem)
+  .delete('/:cardId', [checkJwt], CarController.deletetItem);
 
 export {router};

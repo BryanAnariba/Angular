@@ -1,8 +1,13 @@
-import { model, Schema, Types, Model } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { Car } from '../interfaces';
 
 const carSchema = new Schema<Car>(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: [ true, 'User is required' ]
+    },
     color: {
       type: String,
       required: [ true, 'Color is required' ],
@@ -27,14 +32,19 @@ const carSchema = new Schema<Car>(
       type: Number,
       required: [ true, 'Proce is required' ],
     },
+    status: {
+      type: Boolean,
+      default: true
+    },
     image: {
       type: String,
       default: '',
       trim: true,
     },
-    status: {
-      type: Boolean,
-      default: true
+    path: {
+      type: String,
+      default: '',
+      trim: true,
     }
   },
   {

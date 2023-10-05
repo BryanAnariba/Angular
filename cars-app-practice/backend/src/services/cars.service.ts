@@ -8,11 +8,11 @@ export class CarService {
   }
 
   async getAllCars(limit: number =10,skip: number=0): Promise<Car[]> {
-    return await CarModel.find({ status: true }).limit(limit).skip(skip);
+    return await CarModel.find({ status: true }).limit(limit).skip(skip).populate('user', 'email');
   }
   
   async getCar(carId: string): Promise<Car | null> {
-    return await CarModel.findOne({_id: carId, status: true});
+    return await CarModel.findOne({_id: carId, status: true}).populate('user', 'email');
   }
 
   async editCarData( car: Car, carId: string ): Promise<Car | null> {
