@@ -7,4 +7,7 @@ export class UserService {
     return await userModel.findOne({ email: email, status: true }, { password: false });
   }
 
+  public async findUserById (id: string): Promise<User | null> {
+    return await userModel.findOne({ _id: id, status: true }, { password: false });
+  }
 }

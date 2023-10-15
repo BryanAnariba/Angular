@@ -14,7 +14,7 @@ export const checkJwt = (req: ExtendedRequest, res: Response, next: NextFunction
     if (!payload) {
       return errorHandle(res, 401, 'Invalid or Empty token');  
     }
-    console.log(payload);
+    //console.log(payload);
     req.user = payload.id;
     next();
   } catch (e) {

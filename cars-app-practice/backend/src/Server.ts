@@ -38,7 +38,7 @@ export class Server {
   }
   
   staticFiles (): void {
-    console.log(path.resolve())
+    //console.log(path.resolve())
     this.app.use('/storage',express.static(path.join(path.resolve(), 'storage'))); 
   }
 

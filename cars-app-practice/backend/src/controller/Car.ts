@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { errorHandle } from "../utils";
 import { Car, ExtendedRequest } from "../interfaces";
 import { CarService } from "../services/cars.service";
-import { Types } from "mongoose";
 
 export class CarController {
 
